@@ -16,6 +16,7 @@ install:
 before_script:
   - printf '%s\n%s\n%s\n%s\n' "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY" "AWS_S3_BUCKET_SERVERLESS" "AWS_DEFAULT_REGION" > credential
   - aws configure < credential
+  - rm credential
   - aws s3 cp s3://$AWS_S3_BUCKET_SERVERLESS/serverless.yml serverless.yml
 script:
   - sls deploy
